@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mearm">
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <xacro:macro name="default_inertial" params="mass">
+    <inertial>
+      <mass value="${mass}" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+  </xacro:macro>
+
+  <link name="world"/>
+
+  <joint name="world_robot_joint" type="fixed">
+    <axis xyz="0 0 1" />
+    <origin xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin xyz="-0.963 -0.19 -0.002"/>  
+    </visual>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/upper_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0.7853" xyz="-0.632 -0.9 0.016"/>
+    </visual>
+    
+    <visual>
+      <geometry>
+        <cylinder radius="0.002" length="0.02"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.022 0.022 0.008"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.002" length="0.02"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.022 -0.022 0.008"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.002" length="0.02"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="-0.022 0.022 0.008"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.002" length="0.02"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="-0.022 -0.022 0.008"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin xyz="-0.963 -0.19 -0.002"/>
+    </collision>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/upper_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 0.7853" xyz="-0.631 -0.9 0.016"/>
+    </collision>
+  </link>
+  
+  <joint name="joint_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-0.7853" upper="0.7853" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0 0 0.024"/>
+    <parent link="base_link"/>
+    <child link="joint_0_link"/>
+  </joint>
+
+  <link name="joint_0_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 -1.5707" xyz="-0.231 -0.05 -0.002"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 -1.5707" xyz="-0.231 -0.05 -0.002"/>
+    </collision>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="1.5707 0 0" xyz="-0.8 0.022 -0.1655"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5707 0 0" xyz="-0.8 0.022 -0.1655"/>
+    </collision>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="1.5707 0 3.1415" xyz="0.71 -0.022 -0.164"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5707 0 3.1415" xyz="0.71 -0.022 -0.164"/>
+    </collision>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_board.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="1.5707 0 -1.5707" xyz="0.028 -0.16 -0.18"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_board.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5707 0 -1.5707" xyz="0.028 -0.16 -0.18"/>
+    </collision>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_board.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="1.5707 0 -1.5707" xyz="-0.023 -0.16 -0.18"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/column_board.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5707 0 3.1415" xyz="0.71 -0.022 -0.164"/>
+    </collision>
+  </link>
+
+</robot>

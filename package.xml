@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mearm_model</name>
+  <version>0.0.0</version>
+  <description>The mearm_model package</description>
+  <maintainer email="Jakub.Sikora2.stud@pw.edu.pl">Jakub Sikora</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>xacro</exec_depend>
+</package>
