@@ -242,4 +242,46 @@
       <origin rpy="3.1415 0 0" xyz="0.0418 0.154 -0.007"/>
     </collision>
   </link>  
+
+  <joint name="joint_2" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="0.0" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0.08 0 0"/>
+    <parent link="arm_0"/>
+    <child link="arm_1"/>
+  </joint>
+
+  <link name="arm_1">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_connector.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 -1.5707" xyz="-0.1935 0.45 0.013"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="-0.23 -0.178 -0.013"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.192 -0.144 0.013"/>
+    </visual>
+  </link>
 </robot>
