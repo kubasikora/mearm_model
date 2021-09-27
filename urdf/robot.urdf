@@ -188,6 +188,8 @@
     </collision>
   </link>
 
+  <!-- arm 0 -->
+
   <joint name="joint_1" type="revolute">
     <axis xyz="0 0 1" />
     <limit lower="-1.57" upper="1.0" effort="1000.0" velocity="0.5"/>
@@ -281,13 +283,53 @@
     <child link="arm_0_1_connector"/>
   </joint> 
 
+  <!-- arm 1 -->
+
   <joint name="joint_2" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="0.0" upper="1.57" effort="1000.0" velocity="0.5"/>
+    <origin rpy="1.57 0 3.14" xyz="0.015 0.01 0.03"/>
+    <parent link="column"/>
+    <child link="arm_1_actuator_0"/>
+  </joint> 
+
+  <joint name="joint_2_mimic_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0.035 0 0"/>
+    <mimic joint="joint_2" multiplier="-1" offset="1.57" />
+    <parent link="arm_1_actuator_0"/>
+    <child link="arm_1_actuator_1"/>
+  </joint>
+
+  <joint name="joint_2_mimic_1" type="revolute">
     <axis xyz="0 0 1" />
     <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
     <origin xyz="0.08 0 0"/>
+    <mimic joint="joint_2" multiplier="-1" offset="-1.57" />
     <parent link="arm_0"/>
     <child link="arm_1"/>
   </joint>
+
+  <link name="arm_1_actuator_0">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/servo_actuator.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
+    </visual>
+  </link>
+
+  <link name="arm_1_actuator_1">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.18 -0.162 0.003"/>
+    </visual>
+  </link>
 
   <link name="arm_1">
     <visual>
@@ -306,31 +348,12 @@
       <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
     </visual>
 
-    <!-- <visual>
+    <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.192 -0.144 0.013"/>
-    </visual> -->
-  </link>
-
-  <joint name="joint_x" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit lower="0.0" upper="1.57" effort="1000.0" velocity="0.5"/>
-    <origin rpy="1.57 0 3.14" xyz="0.015 0.01 0.03"/>
-    <parent link="column"/>
-    <mimic joint="joint_2" multiplier="-1" offset="0" />
-    <child link="arm_1_actuator"/>
-  </joint> 
-
-  <link name="arm_1_actuator">
-    <visual>
-      <geometry>
-        <mesh filename="package://mearm_model/meshes/servo_actuator.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="blue"/>
-      <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
     </visual>
   </link>
 
