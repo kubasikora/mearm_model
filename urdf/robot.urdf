@@ -347,14 +347,24 @@
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
     </visual>
+  </link>
 
+  <joint name="arm_1_support_mimic" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
+    <origin rpy="0 0 1.57" xyz="0.012 0.018 0.014"/>
+    <mimic joint="joint_2" multiplier="-1" offset="-1.57" />
+    <parent link="arm_0_1_connector"/>
+    <child link="arm_1_support"/>
+  </joint>
+
+  <link name="arm_1_support">
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue"/>
-      <origin rpy="0 0 0" xyz="0.192 -0.144 0.013"/>
+      <origin rpy="0 0 0" xyz="0.18 -0.162 0"/>
     </visual>
   </link>
-
 </robot>
