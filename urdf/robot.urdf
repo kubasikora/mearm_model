@@ -317,7 +317,7 @@
     <origin xyz="0.08 0 0"/>
     <mimic joint="joint_2" multiplier="-1" offset="-1.57" />
     <parent link="arm_0"/>
-    <child link="arm_1"/>
+    <child link="arm_1a"/>
   </joint>
 
   <link name="arm_1_actuator_0">
@@ -343,7 +343,10 @@
     </visual>
   </link>
 
-  <link name="arm_1">
+  <link name="arm_1a">
+  </link>
+
+  <link name="arm_1b">
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_left.stl" scale="0.001 0.001 0.001"/>
@@ -360,6 +363,15 @@
       <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
     </visual>
   </link>
+
+  <joint name="arm1_mimic_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0 0 0"/>
+    <mimic joint="joint_1" multiplier="-1" offset="0" />
+    <parent link="arm_1a"/>
+    <child link="arm_1b"/>
+  </joint>
 
   <joint name="arm_1_support_mimic" type="revolute">
     <axis xyz="0 0 1" />
