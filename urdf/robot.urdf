@@ -24,6 +24,38 @@
     <child link="base_link"/>
   </joint>
 
+  <!-- controllable joints -->
+  <!-- joint_0 - base servo -->
+  <!-- joint_1 - right servo  -->
+  <!-- joint_2 - left servo -->
+  <!-- joint_3 - gripper servo -->
+
+  <joint name="joint_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-0.7853" upper="0.7853" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0 0 0.024"/>
+    <parent link="base_link"/>
+    <child link="column"/>
+  </joint>
+
+  <joint name="joint_1" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.0" effort="1000.0" velocity="0.5"/>
+    <origin rpy="1.5707 -1.5707 0" xyz="0.014 0 0.029"/>
+    <parent link="column"/>
+    <child link="arm_0"/>
+  </joint>
+
+  <joint name="joint_2" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="0.0" upper="1.57" effort="1000.0" velocity="0.5"/>
+    <origin rpy="1.57 0 3.14" xyz="0.015 0.01 0.03"/>
+    <parent link="column"/>
+    <child link="arm_1_support_0"/>
+  </joint> 
+
+  <!-- base column -->
+
   <link name="base_link">
     <visual>
       <geometry>
@@ -87,14 +119,6 @@
       <origin rpy="0 0 0.7853" xyz="-0.631 -0.9 0.016"/>
     </collision>
   </link>
-  
-  <joint name="joint_0" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit lower="-0.7853" upper="0.7853" effort="1000.0" velocity="0.5"/>
-    <origin xyz="0 0 0.024"/>
-    <parent link="base_link"/>
-    <child link="column"/>
-  </joint>
 
   <link name="column">
     <visual>
@@ -188,15 +212,7 @@
     </collision>
   </link>
 
-  <!-- arm 0 -->
-
-  <joint name="joint_1" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit lower="-1.57" upper="1.0" effort="1000.0" velocity="0.5"/>
-    <origin rpy="1.5707 -1.5707 0" xyz="0.014 0 0.029"/>
-    <parent link="column"/>
-    <child link="arm_0"/>
-  </joint>
+  <!-- arm 0 - controlled by right servo -->
 
   <link name="arm_0">
     <visual>
@@ -245,6 +261,8 @@
     </collision>
   </link>
 
+  <!-- arm_0 - link from column to connector -->
+
   <link name="arm_0_support">
     <visual>
       <geometry>
@@ -264,7 +282,9 @@
     <child link="arm_0_support"/>
   </joint> 
 
-  <link name="arm_0_1_connector">
+  <!-- connector -->
+
+  <link name="connector">
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_connector.stl" scale="0.001 0.001 0.001"/>
@@ -280,26 +300,18 @@
     <origin xyz="0.08 0 0"/>
     <parent link="arm_0"/>
     <mimic joint="joint_1" multiplier="-1" offset="-1.57" />
-    <child link="arm_0_1_connector"/>
+    <child link="connector"/>
   </joint> 
 
-  <!-- arm 1 -->
-
-  <joint name="joint_2" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit lower="0.0" upper="1.57" effort="1000.0" velocity="0.5"/>
-    <origin rpy="1.57 0 3.14" xyz="0.015 0.01 0.03"/>
-    <parent link="column"/>
-    <child link="arm_1_actuator_0"/>
-  </joint> 
+  <!-- arm_1 - link from connector to gripper -->
 
   <joint name="joint_2_mimic_0a" type="revolute">
     <axis xyz="0 0 1" />
     <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
     <origin xyz="0.035 0 0"/>
     <mimic joint="joint_2" multiplier="-1" offset="1.57" />
-    <parent link="arm_1_actuator_0"/>
-    <child link="arm_1_actuator_1a"/>
+    <parent link="arm_1_support_0"/>
+    <child link="arm_1_support_1a"/>
   </joint>
 
   <joint name="joint_2_mimic_0b" type="revolute">
@@ -307,8 +319,8 @@
     <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
     <origin xyz="0 0 0"/>
     <mimic joint="joint_1" multiplier="-1" offset="0" />
-    <parent link="arm_1_actuator_1a"/>
-    <child link="arm_1_actuator_1b"/>
+    <parent link="arm_1_support_1a"/>
+    <child link="arm_1_support_1b"/>
   </joint>
 
   <joint name="joint_2_mimic_1" type="revolute">
@@ -320,28 +332,14 @@
     <child link="arm_1a"/>
   </joint>
 
-  <link name="arm_1_actuator_0">
-    <visual>
-      <geometry>
-        <mesh filename="package://mearm_model/meshes/servo_actuator.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="blue"/>
-      <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
-    </visual>
-  </link>
-
-  <link name="arm_1_actuator_1a">
-  </link>
-  
-  <link name="arm_1_actuator_1b">
-      <visual>
-      <geometry>
-        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="blue"/>
-      <origin rpy="0 0 0" xyz="0.18 -0.162 0.003"/>
-    </visual>
-  </link>
+  <joint name="arm1_mimic_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
+    <origin xyz="0 0 0"/>
+    <mimic joint="joint_1" multiplier="-1" offset="0" />
+    <parent link="arm_1a"/>
+    <child link="arm_1b"/>
+  </joint>
 
   <link name="arm_1a">
   </link>
@@ -364,25 +362,43 @@
     </visual>
   </link>
 
-  <joint name="arm1_mimic_0" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
-    <origin xyz="0 0 0"/>
-    <mimic joint="joint_1" multiplier="-1" offset="0" />
-    <parent link="arm_1a"/>
-    <child link="arm_1b"/>
-  </joint>
+  <!-- arm support -->
 
-  <joint name="arm_1_support_mimic" type="revolute">
+  <link name="arm_1_support_0">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/servo_actuator.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
+    </visual>
+  </link>
+
+  <link name="arm_1_support_1a">
+  </link>
+  
+  <link name="arm_1_support_1b">
+      <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.18 -0.162 0.003"/>
+    </visual>
+  </link>
+
+  <!-- gripper support -->
+
+  <joint name="gripper_support_mimic" type="revolute">
     <axis xyz="0 0 1" />
     <limit lower="-1.57" upper="0.4" effort="1000.0" velocity="0.5"/>
     <origin rpy="0 0 1.57" xyz="0.012 0.018 0.014"/>
     <mimic joint="joint_2" multiplier="-1" offset="-1.57" />
-    <parent link="arm_0_1_connector"/>
-    <child link="arm_1_support"/>
+    <parent link="connector"/>
+    <child link="gripper_support"/>
   </joint>
 
-  <link name="arm_1_support">
+  <link name="gripper_support">
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
