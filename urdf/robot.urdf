@@ -271,6 +271,14 @@
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.181 -0.162 0.003"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.181 -0.162 0.003"/>
+    </collision>
   </link>
 
   <joint name="arm_0_support_mimic" type="revolute">
@@ -292,6 +300,14 @@
       <material name="blue"/>
       <origin rpy="0 0 -1.5707" xyz="-0.1935 0.45 0.013"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_connector.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 -1.5707" xyz="-0.1935 0.45 0.013"/>
+    </collision>
   </link>
 
   <joint name="arm_0_connector_mimic" type="revolute">
@@ -353,6 +369,14 @@
       <origin rpy="0 0 0" xyz="-0.231 -0.177 -0.013"/>
     </visual>
 
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="-0.231 -0.177 -0.013"/>
+    </collision>
+
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
@@ -360,6 +384,14 @@
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.182 -0.161 0.013"/>
+    </collision>
   </link>
 
   <!-- arm support -->
@@ -372,19 +404,35 @@
       <material name="blue"/>
       <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/servo_actuator.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 3.14" xyz="0.532 0.18 0.005"/>
+    </collision>
   </link>
 
   <link name="arm_1_support_1a">
   </link>
   
   <link name="arm_1_support_1b">
-      <visual>
+    <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.18 -0.162 0.003"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.18 -0.162 0.003"/>
+    </collision>
   </link>
 
   <!-- gripper support -->
@@ -406,6 +454,14 @@
       <material name="blue"/>
       <origin rpy="0 0 0" xyz="0.18 -0.162 0"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/arm_1_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.18 -0.162 0"/>
+    </collision>
   </link>
 
   <!-- gripper -->
@@ -428,6 +484,14 @@
       <origin rpy="0 1.57 1.57" xyz="0.18 -0.005 0.1538"/>
     </visual>
 
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 1.57 1.57" xyz="0.18 -0.005 0.1538"/>
+    </collision>
+
     <visual>
       <geometry>
         <mesh filename="package://mearm_model/meshes/gripper_support.stl" scale="0.001 0.001 0.001"/>
@@ -436,6 +500,14 @@
       <origin rpy="0 3.14 3.92" xyz="-0.045 0.168 0.016"/>
     </visual>
 
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 3.92" xyz="-0.045 0.168 0.016"/>
+    </collision>
+
     <visual>
       <geometry>
         <box size="0.024 0.018 0.012" />
@@ -443,6 +515,14 @@
       <material name="blue"/>    
       <origin rpy="0 0 0" xyz="0.004 0.0035 0.002"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.024 0.018 0.012" />
+      </geometry> 
+      <material name="blue"/>    
+      <origin rpy="0 0 0" xyz="0.004 0.0035 0.002"/>
+    </collision>
   </link>
 
   <!-- left gripper -->
@@ -463,6 +543,14 @@
       <material name="blue"/>
       <origin rpy="0 3.14 3.14" xyz="-0.535 0.212 0.0"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 3.14" xyz="-0.535 0.212 0.0"/>
+    </collision>
   </link>
 
   <!-- right gripper -->
@@ -484,6 +572,14 @@
       <material name="blue"/>
       <origin rpy="0 3.14 -1.57" xyz="-0.185 -0.57 0.0"/>
     </visual>
+
+    <collision>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 -1.57" xyz="-0.185 -0.57 0.0"/>
+    </collision>
   </link>
 
   <!-- tool tf -->
