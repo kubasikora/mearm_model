@@ -427,5 +427,74 @@
       <material name="blue"/>
       <origin rpy="0 1.57 1.57" xyz="0.18 -0.005 0.1538"/>
     </visual>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 3.92" xyz="-0.045 0.168 0.016"/>
+    </visual>
+
+    <visual>
+      <geometry>
+        <box size="0.024 0.018 0.012" />
+      </geometry> 
+      <material name="blue"/>    
+      <origin rpy="0 0 0" xyz="0.004 0.0035 0.002"/>
+    </visual>
+  </link>
+
+  <!-- left gripper -->
+
+  <joint name="joint_3" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="1.57" effort="1000.0" velocity="0.5"/>
+    <origin rpy="-1.57 0 0" xyz="0.028 -0.003 -0.007"/>
+    <parent link="gripper"/>
+    <child link="gripper_left"/>
+  </joint>
+
+  <link name="gripper_left">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 3.14" xyz="-0.535 0.212 0.0"/>
+    </visual>
+  </link>
+
+  <!-- right gripper -->
+
+  <joint name="joint_3_mimic" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="1.57" effort="1000.0" velocity="0.5"/>
+    <origin rpy="-1.57 0 0" xyz="0.028 -0.003 0.011"/>
+    <mimic joint="joint_3" multiplier="-1" offset="0" />
+    <parent link="gripper"/>
+    <child link="gripper_right"/>
+  </joint>
+
+  <link name="gripper_right">
+    <visual>
+      <geometry>
+        <mesh filename="package://mearm_model/meshes/gripper_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 3.14 -1.57" xyz="-0.185 -0.57 0.0"/>
+    </visual>
+  </link>
+
+  <!-- tool tf -->
+
+  <joint name="tool_joint" type="fixed">
+    <axis xyz="0 0 1" />
+    <origin rpy="-1.57 0 0" xyz="0.043 -0.005 0.003"/>
+    <parent link="gripper"/>
+    <child link="tool"/>
+  </joint>
+
+  <link name="tool">
   </link>
 </robot>
